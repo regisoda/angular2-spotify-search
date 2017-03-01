@@ -1,0 +1,44 @@
+<div class="container is-fluid">
+    <br>
+    <div>
+        <input class="input" type="text" placeholder="Please enter artist name" [formControl]="searchField" #search>
+    </div>
+
+    <br>
+    <div class="box" *ngFor="let r of results" style="cursor: pointer" (click)="actionWindowOpen(r?.external_urls?.spotify)">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-64x64" *ngIf="r?.images[0]">
+                    <img [src]="r.images[0].url" alt="Image">
+                </figure>
+                <figure class="image is-64x64" *ngIf="!r?.images[0]">
+                    <img src="http://bulma.io/images/placeholders/128x128.png" alt="Image">
+                </figure>
+            </div>
+            <div class="media-content">
+                <div class="content">
+                    <p class="title">
+                        {{r.name}}
+                    </p>
+                </div>
+
+                <div class="level">
+                    <div class="level-left">
+                        <p class="level-item has-text-centered" *ngFor="let g of r.genres">
+                            <small>.{{g}}</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="level">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Popularity</p>
+                        <p class="title">{{r.popularity}}</p>
+                    </div>
+                </div>
+            </nav>
+        </article>
+    </div>
+</div>
